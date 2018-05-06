@@ -4,6 +4,7 @@ set :user,            'kvmuser'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
+set :rvm_map_bins, %w{gem rake ruby rails bundle}
 set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
@@ -36,8 +37,8 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/develop`
-        puts "WARNING: HEAD is not the same as origin/develop"
+      unless `git rev-parse HEAD` == `git rev-parse origin/master`
+        puts "WARNING: HEAD is not the same as origin/master"
         puts "Run `git push` to sync changes."
         exit
       end
