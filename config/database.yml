@@ -1,0 +1,32 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: postgresql
+  username: postgres
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: "medical_center_development"
+
+test: &test
+  <<: *default
+  database: medical_center_test
+
+production:
+  adapter: postgresql
+  host: <%=ENV['POSTGRES_HOST'] %>
+  port: 5432
+  database: medical_center
+  username: devops
+  password: <%=ENV['POSTGRES_PASSWORD'] %>
+  pool: 5
+  timeout: 5000
+
+cucumber:
+  <<: *test

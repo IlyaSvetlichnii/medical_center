@@ -1,0 +1,93 @@
+<div class="form">
+	<ul class="tab-group">
+		<li class="tab active"><a href="signup">Sign Up</a></li>
+		<li class="tab"><a href="login">Log In</a></li>
+	</ul>
+
+	<%= form_tag("/signup", method: "post") do %>
+		<h1>Добро пожаловать!</h1>
+		<div id="login">
+			<div class="field-wrap">
+				<label>
+					Email<span class="req">*</span>
+				</label>
+					<%= email_field :email, params[:email], autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Пароль<span class="req">*</span>
+				</label>
+				<%= password_field_tag :password, nil, autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Подтверждения пароля<span class="req">*</span>
+				</label>
+				<%= password_field_tag :password_confirmation, nil, autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Имя<span class="req">*</span>
+				</label>
+					<%= text_field_tag :first_name, params[:first_name], autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Фамилия<span class="req">*</span>
+				</label>
+					<%= text_field_tag :last_name, params[:last_name], autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Отчество<span class="req">*</span>
+				</label>
+					<%= text_field_tag :patronymic, params[:patronymic], autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Дата рождения<span class="req">*</span>
+				</label>
+					<%= text_field_tag :birthday, params[:birthday], autocomplete: "off" %>
+			</div>
+
+			<%= submit_tag "Войти", class: "button button-block" %>
+		</div>
+	<% end %>
+</div>
+
+<script>
+	$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+
+		var $this = $(this),
+				label = $this.prev('label');
+
+			if (e.type === 'keyup') {
+				if ($this.val() === '') {
+						label.removeClass('active highlight');
+					} else {
+						label.addClass('active highlight');
+					}
+			} else if (e.type === 'blur') {
+				if( $this.val() === '' ) {
+					label.removeClass('active highlight');
+				} else {
+					label.removeClass('highlight');
+				}
+			} else if (e.type === 'focus') {
+
+				if( $this.val() === '' ) {
+					label.removeClass('highlight');
+				}
+				else if( $this.val() !== '' ) {
+					label.addClass('highlight');
+				}
+			}
+
+	});
+</script>

@@ -1,0 +1,90 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+  .w3-row-padding img {margin-bottom: 12px}
+  .w3-sidebar {width: 120px;background: #222;}
+  #main {margin-left: 120px}
+  @media only screen and (max-width: 600px) {#main {margin-left: 0}}
+</style>
+<body class="w3-black">
+  <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+    <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+      <i class="fa fa-home w3-xxlarge"></i>
+      <p>Главная</p>
+    </a>
+    <a href="/patients" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+      <i class="fa fa-user w3-xxlarge"></i>
+      <p>Пациенты</p>
+    </a>
+    <a href="/patient_registration" class="w3-bar-item w3-button w3-padding-large w3-black">
+      <i class="fa fa-address-book-o w3-xxlarge"></i>
+      <p>Регистрация пациента</p>
+    </a>
+    <a href="logout" class="w3-bar-item w3-button w3-padding-large w3-hover-black" data-method="delete">
+      <i class="fa fa-close w3-xxlarge"></i>
+      <p>CONTACT</p>
+    </a>
+  </nav>
+<div class="w3-padding-large" id="main">
+	<%= form_tag("/signup", method: "post") do %>
+		<h1>Регистрация пациента</h1>
+		<div id="login">
+			<div class="field-wrap">
+				<label>
+					Email<span class="req">*</span>
+				</label>
+					<%= email_field :email, params[:email], autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Пароль<span class="req">*</span>
+				</label>
+				<%= password_field_tag :password, nil, autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Подтверждения пароля<span class="req">*</span>
+				</label>
+				<%= password_field_tag :password_confirmation, nil, autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Имя<span class="req">*</span>
+				</label>
+					<%= text_field_tag :first_name, params[:first_name], autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Фамилия<span class="req">*</span>
+				</label>
+					<%= text_field_tag :last_name, params[:last_name], autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Отчество<span class="req">*</span>
+				</label>
+					<%= text_field_tag :patronymic, params[:patronymic], autocomplete: "off" %>
+			</div>
+
+			<div class="field-wrap">
+				<label>
+					Дата рождения<span class="req">*</span>
+				</label>
+					<%= text_field_tag :birthday, params[:birthday], autocomplete: "off" %>
+			</div>
+
+			<%= submit_tag "Регистрация", class: "button button-block" %>
+		</div>
+	<% end %>
+</div>
+</body>
+
