@@ -3,10 +3,10 @@ module Users
     include Interactor
 
     def call
-      user_params = context.params
+      user_params = context.profile_params
 
-      if user_params["email"].present?
-        user_params["email"] = context.profile_params["email"].downcase
+      if user_params[:email].present?
+        user_params[:email] = context.profile_params[:email].downcase
       end
 
       user = User.create(user_params)

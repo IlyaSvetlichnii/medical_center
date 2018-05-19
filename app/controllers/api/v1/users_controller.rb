@@ -13,7 +13,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def create
-    result = Users::Register.call(profile_params: profile_params)
+    result = Users::Create.call(profile_params: profile_params)
     render resource_render_params(result, serializer: ::V1::UserSerializer)
   end
 
